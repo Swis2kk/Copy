@@ -1,12 +1,14 @@
 package com.company;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Copy {
-    public static void main (String[] args) throws IOException {
+    public static void main (String[] args) {
 
         File source=new File("c:/example/book.pdf");
-        System.out.println(source.canRead());
+        //System.out.println(source.canRead());
         File dest=new File("c:/example/book_copy.pdf");
 
 
@@ -28,6 +30,11 @@ public class Copy {
             }
 
         } catch (IOException io) {
+            io.getMessage();
         }
+    }
+
+    private static void copyFileStreamsStyle (File src, File dest) throws IOException {
+        Files.copy(Paths.get(src.toURI()), new FileOutputStream(dest));
     }
 }
